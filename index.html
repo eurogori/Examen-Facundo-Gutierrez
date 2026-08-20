@@ -1,0 +1,52 @@
+// Ejemplo - Semaforo coches sencillo
+
+const int ledPin_rojo     = 23; // GPIO del led rojo
+const int ledPin_amarillo = 22; // GPIO del led amarillo
+const int ledPin_verde    = 21; // GPIO del led verde
+
+// se llama una única vez al inicio del programa antes de comenzar el bule "loop"
+void setup()
+{
+  //mode: INPUT, OUTPUT, or INPUT_PULLUP
+  pinMode(ledPin_rojo, OUTPUT);  
+  pinMode(ledPin_amarillo, OUTPUT);  
+  pinMode(ledPin_verde, OUTPUT);  
+
+  Serial.begin(115200);
+  delay(1000);
+  Serial.println("Simulador de Semaforo");   
+  
+}
+
+
+// funcion de código que se repite indefinidamente 
+void loop()
+{
+    Serial.println("Semáforo en rojo... 5 segundos");  
+    digitalWrite(ledPin_rojo,     HIGH);
+    digitalWrite(ledPin_amarillo, LOW);
+    digitalWrite(ledPin_verde,    LOW);
+    delay(5000);
+
+    Serial.println("Semáforo se va a poner en verde... ");  
+    digitalWrite(ledPin_rojo, HIGH);
+    digitalWrite(ledPin_amarillo, HIGH);
+    digitalWrite(ledPin_verde, LOW);
+    delay(2000);
+
+    Serial.println("Semáforo en verde... ");  
+    digitalWrite(ledPin_rojo, LOW);
+    digitalWrite(ledPin_amarillo,LOW);
+    digitalWrite(ledPin_verde, HIGH);
+    delay(5000);
+    
+    Serial.println("Semáforo se va a poner en rojo... ");  
+    digitalWrite(ledPin_rojo, LOW);
+    digitalWrite(ledPin_amarillo, HIGH);
+    digitalWrite(ledPin_verde, HIGH);
+    delay(2000);
+
+
+  // se vuelve a llamar a loop => arriba de la función
+
+}
